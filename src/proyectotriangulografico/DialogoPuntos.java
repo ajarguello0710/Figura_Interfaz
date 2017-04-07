@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import figurasgeometricasherencia.*;
 
 /**
  *
@@ -59,10 +60,14 @@ public class DialogoPuntos extends JDialog implements ActionListener{
 
     private String campo4Y;
     
-    private PanelOpciones panelOpciones;
+    private int tipo;
     
-    public DialogoPuntos() {
-        
+    //private PanelOpciones panelOpciones;
+    
+    private InrterfazTriangulo interfaz;
+    
+    public DialogoPuntos(InrterfazTriangulo interfaz) {
+        this.interfaz = interfaz;
         setBackground(Color.WHITE);
         //Definimos sus dimensiones
         setTitle("Ingresar puntosXY");
@@ -70,7 +75,7 @@ public class DialogoPuntos extends JDialog implements ActionListener{
         setLocationRelativeTo(null);
         
         setLayout(new GridLayout(3, 3));
-        CrearCuadros();
+        crearCuadros();
         
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         
@@ -78,7 +83,7 @@ public class DialogoPuntos extends JDialog implements ActionListener{
         
     }
     
-    public void CrearCuadros() {
+    public void crearCuadros() {
         add(Punto1);
         campoX1 = new JTextField(10);
         add(campoX1);
@@ -104,7 +109,7 @@ public class DialogoPuntos extends JDialog implements ActionListener{
         //add(campoY4);
     }
         
-    public void recibeTipo(int tipo) {
+    public void recibeTipo(){
         System.out.println(tipo);
         if((tipo == 1) || (tipo == 2)) {
             setLayout(new GridLayout(4, 3));
@@ -135,10 +140,76 @@ public class DialogoPuntos extends JDialog implements ActionListener{
             campo3Y = campoY3.getText();
             campo4X = campoX4.getText();
             campo4Y = campoY4.getText();
+            System.out.println("Asigne Valores");
+            //setVisible(false);
+        }
+        if(tipo == 1){
+            
+            iniciarTriangulo();
+        }
+        else if(tipo == 2){
+            iniciarCuadrado();
+        }
+        else{
+            iniciarCirculo();
+        }
+    }
+    
+    public void iniciarTriangulo(){
+        double x = Double.parseDouble(campo1X);
+        double y = Double.parseDouble(campo1Y);
+        Punto punto1 = new Punto(x, y);
+        x = Double.parseDouble(campo2X);
+        y = Double.parseDouble(campo2Y);
+        Punto punto2 = new Punto(x, y);
+        x = Double.parseDouble(campo3X);
+        y = Double.parseDouble(campo3Y);
+        Punto punto3 = new Punto(x, y);
+        Triangulo triangulo = new Triangulo(punto1, punto2, punto3);
+        boolean validar = triangulo.validarPuntos();
+        if(validar != false){
+            interfaz.getPanelTriangulo().setPunto1(punto1);
+            interfaz.getPanelTriangulo().setPunto2(punto2);
+            interfaz.getPanelTriangulo().setPunto3(punto3);
+            interfaz.getPanelTriangulo().setTipoFigura((short)1);
+            interfaz.getPanelTriangulo().repaint();
+            setVisible(false);
+        }
+        else{
+            
+        }
+    }
+    
+    public void iniciarCuadrado(){
+        double x = Double.parseDouble(campo1X);
+        double y = Double.parseDouble(campo1Y);
+        Punto punto1 = new Punto(x, y);
+        x = Double.parseDouble(campo2X);
+        y = Double.parseDouble(campo2Y);
+        Punto punto2 = new Punto(x, y);
+        x = Double.parseDouble(campo3X);
+        y = Double.parseDouble(campo3Y);
+        Punto punto3 = new Punto(x, y);
+        x = Double.parseDouble(campo4X);
+        y = Double.parseDouble(campo4Y);
+        Punto punto4 = new Punto(x, y);
+        Cuadrado cuadrado = new Cuadrado(punto1, punto2, punto3, punto4);
+        boolean validar = cuadrado.validarPuntos();
+        if(validar != false){
+            interfaz.getPanelTriangulo().setPunto1(punto1);
+            interfaz.getPanelTriangulo().setPunto2(punto2);
+            interfaz.getPanelTriangulo().setPunto3(punto3);
+            interfaz.getPanelTriangulo().setPunto4(punto4);
+            interfaz.getPanelTriangulo().setTipoFigura((short)2);
+            interfaz.getPanelTriangulo().repaint();
             setVisible(false);
         }
     }
 
+    public void iniciarCirculo(){
+        
+    }
+    
     public String getCampo1X() {
         return campo1X;
     }
@@ -201,5 +272,15 @@ public class DialogoPuntos extends JDialog implements ActionListener{
 
     public void setCampo4Y(String campo4Y) {
         this.campo4Y = campo4Y;
-    } 
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+        recibeTipo();
+    }
+    
 }

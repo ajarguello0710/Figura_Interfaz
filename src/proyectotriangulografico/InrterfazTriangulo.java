@@ -47,7 +47,7 @@ public class InrterfazTriangulo extends JFrame{
         panelImagen = new PanelImagen();
         getContentPane().add(panelImagen, BorderLayout.NORTH);
         
-        panelOpciones = new PanelOpciones();
+        panelOpciones = new PanelOpciones(this);
         getContentPane().add(panelOpciones, BorderLayout.SOUTH);
                 
         panelBotones = new PanelBotones(this);

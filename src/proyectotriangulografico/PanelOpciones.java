@@ -22,11 +22,13 @@ public class PanelOpciones extends JPanel implements ActionListener{
     //  Boton para ingresar los puntos del circulo
     private JButton btnPuntosCirculo;   
     
+    private InrterfazTriangulo interfaz;
+    
     /**
      * Constructor
      */
-    public PanelOpciones() { 
-        
+    public PanelOpciones(InrterfazTriangulo interfaz) { 
+        this.interfaz = interfaz;
         setBackground(Color.WHITE);
         setBorder(new TitledBorder("Ingresar Puntos"));
         setLayout(new GridLayout(1, 3));
@@ -49,7 +51,7 @@ public class PanelOpciones extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        DialogoPuntos dialogoPuntos = new DialogoPuntos();
+        DialogoPuntos dialogoPuntos = new DialogoPuntos(interfaz);
         int tipo = 0;
         switch (e.getActionCommand()) {
             case "triangulo":
@@ -68,6 +70,6 @@ public class PanelOpciones extends JPanel implements ActionListener{
                 
                 break;
         }
-        dialogoPuntos.recibeTipo(tipo);
+        dialogoPuntos.setTipo(tipo);
     }
 }

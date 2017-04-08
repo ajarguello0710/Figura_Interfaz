@@ -33,7 +33,6 @@ public class PanelTriangulo extends JPanel{
     private short tipoFigura = 0;
     //  Guarda el radio del circulo
     private double radio;
-    //
     
     /***************************************************************************
      * Metodo Constructor

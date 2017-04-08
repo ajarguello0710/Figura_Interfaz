@@ -2,6 +2,9 @@
 package proyectotriangulografico;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /*******************************************************************************
@@ -35,6 +38,9 @@ public class InrterfazTriangulo extends JFrame{
         setTitle("Figuras");
         setSize(600, 600);
         setLocationRelativeTo(null);
+        Toolkit pantalla = Toolkit.getDefaultToolkit();
+        Image icono = pantalla.getImage("imagenes/triangulo2.png");
+        setIconImage(icono);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
@@ -74,4 +80,21 @@ public class InrterfazTriangulo extends JFrame{
     public void setPanelTriangulo(PanelTriangulo panelTriangulo) {
         this.panelTriangulo = panelTriangulo;
     }
+
+    /**
+     * Obtener el valor del panel de botones
+     * @return panelBotones
+     */
+    public PanelBotones getPanelBotones() {
+        return panelBotones;
+    }
+
+    /**
+     * Cambiar el valor del panel de botones
+     * @param panelBotones 
+     */
+    public void setPanelBotones(PanelBotones panelBotones) {
+        this.panelBotones = panelBotones;
+    }
+    
 }

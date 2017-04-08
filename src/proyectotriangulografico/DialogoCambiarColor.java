@@ -159,7 +159,7 @@ public class DialogoCambiarColor extends JDialog implements ActionListener{
     }
 
     /***************************************************************************
-     * Obtener el valor del tipo de solicitud
+     * Metodo que obtiene el valor del tipo de solicitud
      * @return tipo
      */
     public byte getTipo() {
@@ -167,7 +167,7 @@ public class DialogoCambiarColor extends JDialog implements ActionListener{
     }
 
     /***************************************************************************
-     * Modificar el valor del tipo de solicitud
+     * Metodo que modifica el valor del tipo de solicitud
      * @param tipo 
      */
     public void setTipo(byte tipo) {

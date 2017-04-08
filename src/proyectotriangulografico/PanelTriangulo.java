@@ -21,16 +21,19 @@ public class PanelTriangulo extends JPanel{
     private Color colorLinea = Color.RED;
     //  Guarda el color del fondo de la figura
     private Color colorFondo = Color.WHITE;
+    //  Guarda las coordenadas del punto 1
+    private Punto punto1 = new Punto(0, 0);
+    //  Guarda las coordenadas del punto 2
+    private Punto punto2 = new Punto(0, 0);
+    //  Guarda las coordenadas del punto 3
+    private Punto punto3 = new Punto(0, 0);
+    //  Guarda las coordenadas del punto 4
+    private Punto punto4 = new Punto(0, 0);
+    //  Guarda el tipo de figura
+    private short tipoFigura = 0;
+    //  Guarda el radio del circulo
+    private double radio;
     //
-    private Punto punto1 = new Punto(-10, 0);
-    //
-    private Punto punto2 = new Punto(10, 10);
-    //
-    private Punto punto3 = new Punto(0, 20);
-    //
-    private Punto punto4 = new Punto(0, 10);
-    //
-    private short tipoFigura = 3;
     
     /***************************************************************************
      * Metodo Constructor
@@ -79,19 +82,11 @@ public class PanelTriangulo extends JPanel{
         }
         if(tipoFigura == 3){
             Ellipse2D elipse = new Ellipse2D.Double();
-            elipse.setFrameFromCenter(punto1x, punto1y, punto2x, punto2y);
             graficar.setColor(colorFondo);
             System.out.println("Pinta elipse");
-            graficar.draw(elipse);
-            graficar.setColor(colorLinea);
             graficar.fill(elipse);
-            /*
-            elipse.setCenterX(d.width / 2 + 5*(punto1.getX()));
-            elipse.setCenterY(d.height /2 + -1*5*(punto1.getY()));
-            elipse.setRadiusX(d.width / 2 + 5*(punto2.getX()));
-            elipse.setRadiusY(d.height /2 + -1*5*(punto2.getY()));
-            g
-           */ 
+            graficar.setColor(colorLinea);
+            graficar.draw(elipse);
         }
         planoCartesiano(g);
     }
@@ -148,44 +143,99 @@ public class PanelTriangulo extends JPanel{
         this.colorFondo = colorFondo;
     }
 
+    /***************************************************************************
+     * Metodo que obtiene el punto1
+     * @return punto1
+     */
     public Punto getPunto1() {
         return punto1;
     }
 
+    /***************************************************************************
+     * Metodo que cambia el punto1
+     * @param punto1 
+     */
     public void setPunto1(Punto punto1) {
         this.punto1 = punto1;
     }
 
+    /***************************************************************************
+     * Metodo que obtiene el punto2
+     * @return punto2
+     */
     public Punto getPunto2() {
         return punto2;
     }
 
+    /***************************************************************************
+     * Metodo que cambia el punto2
+     * @param punto2 
+     */
     public void setPunto2(Punto punto2) {
         this.punto2 = punto2;
     }
 
+    /***************************************************************************
+     * Metodo que obtiene el punto3
+     * @return punto3
+     */
     public Punto getPunto3() {
         return punto3;
     }
-
+    
+    /***************************************************************************
+     * Metodo que cambia el punto3
+     * @param punto3 
+     */
     public void setPunto3(Punto punto3) {
         this.punto3 = punto3;
     }
-
+    
+    /***************************************************************************
+     * Metodo que obtiene el punto4
+     * @return punto4
+     */
     public Punto getPunto4() {
         return punto4;
     }
-
+    
+    /***************************************************************************
+     * Metodo que cambia el punto4
+     * @param punto4 
+     */
     public void setPunto4(Punto punto4) {
         this.punto4 = punto4;
     }
-
+    
+    /***************************************************************************
+     * Metodo que obtiene el tipo de figura
+     * @return tipoFigura
+     */
     public short getTipoFigura() {
         return tipoFigura;
     }
-
+    
+    /***************************************************************************
+     * Metodo que cambia el tipo de figura
+     * @param tipoFigura 
+     */
     public void setTipoFigura(short tipoFigura) {
         this.tipoFigura = tipoFigura;
     }
-    
+
+    /***************************************************************************
+     * Metodo que obtiene el radio
+     * @return radio
+     */
+    public double getRadio() {
+        return radio;
+    }
+
+    /***************************************************************************
+     * Metodo que cambia el radio
+     * @param radio 
+     */
+    public void setRadio(double radio) {
+        this.radio = radio;
+    }
 }

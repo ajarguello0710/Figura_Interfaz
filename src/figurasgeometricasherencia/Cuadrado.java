@@ -3,7 +3,7 @@ package figurasgeometricasherencia;
 
 /**
  * 
- * @author Cuchurrumi
+ * @author Anggy Arguello - Holmes AYala
  */
 public class Cuadrado extends Figura {
     //  Objeto que guarda las coordenadas (x,y) del punto 3
@@ -22,6 +22,8 @@ public class Cuadrado extends Figura {
         super(punto1, punto2);
         this.punto3 = punto3;
         this.punto4 = punto4;
+        calcularArea();
+        calcularPerimetro();
     }
     
     /**

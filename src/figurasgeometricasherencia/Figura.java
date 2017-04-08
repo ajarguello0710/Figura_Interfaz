@@ -2,7 +2,7 @@
 package figurasgeometricasherencia;
 
 /**
- * @author Cuchurrumi
+ * @author Anggy Arguello - Holmes Ayala
  */
 public class Figura {
     //  Las tres figuras tienen minimo 2 puntos

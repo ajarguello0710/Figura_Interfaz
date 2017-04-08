@@ -8,13 +8,10 @@ import java.util.Scanner;
 public class FigurasGeometricasHerencia {
     //  Objeto de la clase Scanner
     Scanner leer = new Scanner(System.in);
-
     //  Objeto de la clase Triangulo
     private Triangulo triangulo;
-    
     //  Objeto de la clase Cuadrado
     private Cuadrado cuadrado;
-
     //  Objeto de la Clase Circulo
     private Circulo circulo;
     

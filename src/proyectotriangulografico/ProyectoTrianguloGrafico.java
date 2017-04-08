@@ -2,7 +2,7 @@
 package proyectotriangulografico;
 
 /**
- *
+ * Clase Main
  * @author Anggy Arguello - Holmes Ayala
  */
 public class ProyectoTrianguloGrafico {

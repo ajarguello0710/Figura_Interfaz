@@ -66,7 +66,7 @@ public class PanelBotones extends JPanel implements ActionListener{
         etiquetaPerimetro = new JLabel("Perimetro: ");
         add(etiquetaPerimetro);
 
-        etiquetaAltura = new JLabel("Altura: ");
+        etiquetaAltura = new JLabel("");
         add(etiquetaAltura);
     }
     
@@ -88,7 +88,54 @@ public class PanelBotones extends JPanel implements ActionListener{
                 break;
         }
         dialogoCambiarColor.mostrar();
-        interfaz.getPanelTriangulo().repaint();
+    }
+
+    /***************************************************************************
+     * Obtiene el valor de la etiqueta de area
+     * @return 
+     */
+    public JLabel getEtiquetaArea() {
+        return etiquetaArea;
+    }
+
+    /***************************************************************************
+     * Cambia el valor de la etiqueta de area
+     * @param etiquetaArea 
+     */
+    public void setEtiquetaArea(JLabel etiquetaArea) {
+        this.etiquetaArea = etiquetaArea;
+    }
+
+    /***************************************************************************
+     * Obtener el valor de la etiqueta de perimetro
+     * @return 
+     */
+    public JLabel getEtiquetaPerimetro() {
+        return etiquetaPerimetro;
+    }
+
+    /***************************************************************************
+     * Cambia el valor de la etiqueta de perimetro
+     * @param etiquetaPerimetro 
+     */
+    public void setEtiquetaPerimetro(JLabel etiquetaPerimetro) {
+        this.etiquetaPerimetro = etiquetaPerimetro;
+    }
+
+    /***************************************************************************
+     * Obtener el valor de la etiqueta de dato especifico
+     * @return 
+     */
+    public JLabel getEtiquetaAltura() {
+        return etiquetaAltura;
+    }
+
+    /***************************************************************************
+     * Cambia el valor de la etiqueta de dato especifico
+     * @param etiquetaAltura 
+     */
+    public void setEtiquetaAltura(JLabel etiquetaAltura) {
+        this.etiquetaAltura = etiquetaAltura;
     }
     
 }

@@ -6,7 +6,9 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -21,7 +23,7 @@ public class PanelOpciones extends JPanel implements ActionListener{
     private JButton btnPuntosCuadrado;
     //  Boton para ingresar los puntos del circulo
     private JButton btnPuntosCirculo;   
-    
+    //  Guarda la interfaz
     private InrterfazTriangulo interfaz;
     
     /**
@@ -49,6 +51,10 @@ public class PanelOpciones extends JPanel implements ActionListener{
         add(btnPuntosCirculo);
     }
 
+    /**
+     * Metodo que esta a la espera de un evento
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         DialogoPuntos dialogoPuntos = new DialogoPuntos(interfaz);

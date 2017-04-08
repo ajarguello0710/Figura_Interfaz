@@ -2,7 +2,7 @@
 package figurasgeometricasherencia;
 
 /**
- * @author Cuchurrumi
+ * @author Holmes Ayala - Anggy Arguello
  */
 public class Circulo extends Figura {
 
@@ -13,6 +13,8 @@ public class Circulo extends Figura {
      */
     public Circulo(Punto punto1, Punto punto2) {
         super(punto1, punto2);
+        calcularArea();
+        calcularPerimetro();
     }
 
     /**

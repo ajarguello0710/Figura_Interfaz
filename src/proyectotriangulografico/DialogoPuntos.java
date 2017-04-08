@@ -12,77 +12,82 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import figurasgeometricasherencia.*;
 
-/**
- *
+/***************************************************************************
+ * Clase DialogoPuntos
  * @author Anggy Arguello - Holmes Ayala
  */
 public class DialogoPuntos extends JDialog implements ActionListener{
-    
+    //  Boton Aceptar que envia los valores de los puntos
     private JButton btnAceptar;
-    
+    //  Cuadro de texto para PuntoX1
     private JTextField campoX1;
-        
+    //  Cuadro de texto para PuntoY1  
     private JTextField campoY1;
-
+    //  Cuadro de texto para PuntoX2 
     private JTextField campoX2;
-
+    //  Cuadro de texto para PuntoY2
     private JTextField campoY2;
-
+    //  Cuadro de texto para PuntoX3
     private JTextField campoX3;
-
+    //  Cuadro de texto para PuntoY3
     private JTextField campoY3;
-
+    //  Cuadro de texto para PuntoX4
     private JTextField campoX4;
-
+    //  Cuadro de texto para PuntoY4
     private JTextField campoY4;
-
+    //  Etiqueta que imprime el Punto1
     private JLabel Punto1 = new JLabel("Punto1");
-
+    //  Etiqueta que imprime el Punto2
     private JLabel Punto2 = new JLabel("Punto2");
-
+    //  Etiqueta que imprime el Punto3
     private JLabel Punto3 = new JLabel("Punto3");
-
+    //  Etiqueta que imprime el Punto4
     private JLabel Punto4 = new JLabel("Punto4");
-
+    //  Etiqueta que imprime mensaje error1
+    private JLabel txtError1 = new JLabel("               Puntos NO");
+    //  Etiqueta que imprime mensaje error2
+    private JLabel txtError2 = new JLabel("validos!");
+    //  Guarda lo que se ingrese en X1
     private String campo1X;
-
+    //  Guarda lo que se ingrese en Y1
     private String campo1Y;
-
+    //  Guarda lo que se ingrese en X2
     private String campo2X;
-
+    //  Guarda lo que se ingrese en Y2
     private String campo2Y;
-
+    //  Guarda lo que se ingrese en X3
     private String campo3X;
-
+    //  Guarda lo que se ingrese en Y3
     private String campo3Y;
-
+    //  Guarda lo que se ingrese en X4
     private String campo4X;
-
+    //  Guarda lo que se ingrese en Y4
     private String campo4Y;
-    
+    //  Guarda el tipo de figura
     private int tipo;
-    
-    //private PanelOpciones panelOpciones;
-    
+    //  Guarda la Interfaz
     private InrterfazTriangulo interfaz;
     
+    /***************************************************************************
+     * Constructor
+     * @param interfaz 
+     */
     public DialogoPuntos(InrterfazTriangulo interfaz) {
+        
         this.interfaz = interfaz;
         setBackground(Color.WHITE);
-        //Definimos sus dimensiones
         setTitle("Ingresar puntosXY");
-        setBounds(15, 15, 350, 200);
-        setLocationRelativeTo(null);
+        setBounds(70, 150, 350, 200);
         
         setLayout(new GridLayout(3, 3));
         crearCuadros();
-        
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        
         setVisible(true);
-        
     }
     
+    /***************************************************************************
+     * Metodo que crea los cuadros de textos
+     */
     public void crearCuadros() {
         add(Punto1);
         campoX1 = new JTextField(10);
@@ -96,19 +101,15 @@ public class DialogoPuntos extends JDialog implements ActionListener{
         campoY2 = new JTextField(10);
         add(campoY2);
         
-        //add(Punto3);
         campoX3 = new JTextField(10);
-        //add(campoX3);
         campoY3 = new JTextField(10);
-        //add(campoY3);
-        
-        //add(Punto4);
         campoX4 = new JTextField(10);
-        //add(campoX4);
         campoY4 = new JTextField(10);
-        //add(campoY4);
     }
-        
+    
+    /***************************************************************************
+     * Metodo que agrega los cuadros de textos
+     */
     public void recibeTipo(){
         System.out.println(tipo);
         if((tipo == 1) || (tipo == 2)) {
@@ -128,7 +129,12 @@ public class DialogoPuntos extends JDialog implements ActionListener{
         btnAceptar.addActionListener(this);
         add(btnAceptar);
     }
-
+    
+    /***************************************************************************
+     * Metodo que esta a la espera por si se presiona un boton y cambia el valor
+     * del color general
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand() == "Aceptar") {
@@ -140,8 +146,6 @@ public class DialogoPuntos extends JDialog implements ActionListener{
             campo3Y = campoY3.getText();
             campo4X = campoX4.getText();
             campo4Y = campoY4.getText();
-            System.out.println("Asigne Valores");
-            //setVisible(false);
         }
         if(tipo == 1){
             
@@ -155,6 +159,9 @@ public class DialogoPuntos extends JDialog implements ActionListener{
         }
     }
     
+    /***************************************************************************
+     * Metodo que envia los valores de triangulo a Triangulo
+     */
     public void iniciarTriangulo(){
         double x = Double.parseDouble(campo1X);
         double y = Double.parseDouble(campo1Y);
@@ -172,14 +179,21 @@ public class DialogoPuntos extends JDialog implements ActionListener{
             interfaz.getPanelTriangulo().setPunto2(punto2);
             interfaz.getPanelTriangulo().setPunto3(punto3);
             interfaz.getPanelTriangulo().setTipoFigura((short)1);
+            interfaz.getPanelBotones().getEtiquetaArea().setText("Area: " + triangulo.getArea());
+            interfaz.getPanelBotones().getEtiquetaPerimetro().setText("Perimetro: " + triangulo.getPerimetro());
+            interfaz.getPanelBotones().getEtiquetaAltura().setText("Tipo triangulo: "+triangulo.tipoTriangulo());
             interfaz.getPanelTriangulo().repaint();
-            setVisible(false);
         }
         else{
-            
+            add(txtError1);
+            add(txtError2);
+            setVisible(true);
         }
     }
     
+    /***************************************************************************
+     * Metodo que envia los valores de cuadrado a Cuadrado
+     */
     public void iniciarCuadrado(){
         double x = Double.parseDouble(campo1X);
         double y = Double.parseDouble(campo1Y);
@@ -202,82 +216,185 @@ public class DialogoPuntos extends JDialog implements ActionListener{
             interfaz.getPanelTriangulo().setPunto4(punto4);
             interfaz.getPanelTriangulo().setTipoFigura((short)2);
             interfaz.getPanelTriangulo().repaint();
-            setVisible(false);
+            interfaz.getPanelBotones().getEtiquetaArea().setText("Area: " + cuadrado.getArea());
+            System.out.println(cuadrado.getArea());
+            interfaz.getPanelBotones().getEtiquetaPerimetro().setText("Perimetro: " + cuadrado.getPerimetro());
+            interfaz.getPanelBotones().getEtiquetaAltura().setText("Tipo: " + cuadrado.tipo());
+        }
+        else{
+            add(txtError1);
+            add(txtError2);
+            setVisible(true);
         }
     }
-
+    
+    /***************************************************************************
+     * Metodo que envia los valores de circulo a Circulo
+     */
     public void iniciarCirculo(){
-        
+        double x = Double.parseDouble(campo1X);
+        double y = Double.parseDouble(campo1Y);
+        Punto punto1 = new Punto(x, y);
+        x = Double.parseDouble(campo2X);
+        y = Double.parseDouble(campo2Y);
+        Punto punto2 = new Punto(x, y);
+        Circulo circulo = new Circulo(punto1, punto2);
+        boolean validar = circulo.validar();
+        if(validar != false){
+            interfaz.getPanelTriangulo().setPunto1(punto1);
+            interfaz.getPanelTriangulo().setRadio(circulo.darLado1());
+            interfaz.getPanelTriangulo().setTipoFigura((short)3);
+            interfaz.getPanelTriangulo().repaint();
+            interfaz.getPanelBotones().getEtiquetaArea().setText("Area: " + circulo.getArea());
+            interfaz.getPanelBotones().getEtiquetaPerimetro().setText("Perimetro: " + circulo.getPerimetro());
+            interfaz.getPanelBotones().getEtiquetaAltura().setText("Radio: " + circulo.darLado1());
+        }
+        else{
+            add(txtError1);
+            add(txtError2);
+            setVisible(true);
+        }
     }
     
+    /***************************************************************************
+     * Metodo que obtiene el valor de punto1x
+     * @return campo1X
+     */
     public String getCampo1X() {
         return campo1X;
     }
 
+    /***************************************************************************
+     * Metodo que modifica el valor de punto1x
+     * @param campo1X 
+     */
     public void setCampo1X(String campo1X) {
         this.campo1X = campo1X;
     }
-
+    
+    /***************************************************************************
+     * Metodo que obtiene el valor de punto1y
+     * @return campo1Y
+     */
     public String getCampo1Y() {
         return campo1Y;
     }
 
+    /***************************************************************************
+     * Metodo que modifica el valor de punto1y
+     * @param campo1Y 
+     */
     public void setCampo1Y(String campo1Y) {
         this.campo1Y = campo1Y;
     }
 
+    /***************************************************************************
+     * Metodo que obtiene el valor de punto2x
+     * @return campo2X
+     */
     public String getCampo2X() {
         return campo2X;
     }
 
+    /***************************************************************************
+     * Metodo que modifica el valor de punto2x
+     * @param campo2X 
+     */
     public void setCampo2X(String campo2X) {
         this.campo2X = campo2X;
     }
-
+    
+    /***************************************************************************
+     * Metodo que obtiene el valor de punto2y
+     * @return campo2Y
+     */
     public String getCampo2Y() {
         return campo2Y;
     }
-
+    
+    /***************************************************************************
+     * Metodo que modifica el valor de punto2y
+     * @param campo2Y 
+     */
     public void setCampo2Y(String campo2Y) {
         this.campo2Y = campo2Y;
     }
-
+    
+    /***************************************************************************
+     * Metodo que obtiene el valor de punto3x
+     * @return campo3X
+     */
     public String getCampo3X() {
         return campo3X;
     }
-
+    /***************************************************************************
+     * Metodo que modifica el valor de punto3x
+     * @param campo3X 
+     */
     public void setCampo3X(String campo3X) {
         this.campo3X = campo3X;
     }
 
+    /***************************************************************************
+     * Metodo que obtiene el valor de punto3y
+     * @return campo3Y
+     */
     public String getCampo3Y() {
         return campo3Y;
     }
 
+    /***************************************************************************
+     * Metodo que modifica el valor de punto3y
+     * @param campo3Y 
+     */
     public void setCampo3Y(String campo3Y) {
         this.campo3Y = campo3Y;
     }
 
+    /***************************************************************************
+     * Metodo que obtiene el valor de punto4x
+     * @return campo4X
+     */
     public String getCampo4X() {
         return campo4X;
     }
 
+    /***************************************************************************
+     * Metodo que modifica el valor de punto4x
+     * @param campo4X 
+     */
     public void setCampo4X(String campo4X) {
         this.campo4X = campo4X;
     }
 
+    /***************************************************************************
+     * Metodo que obtiene el valor de punto4y
+     * @return campo4Y
+     */
     public String getCampo4Y() {
         return campo4Y;
     }
 
+    /***************************************************************************
+     * Metodo que modifica el valor de punto4y
+     * @param campo4Y 
+     */
     public void setCampo4Y(String campo4Y) {
         this.campo4Y = campo4Y;
     }
 
+    /***************************************************************************
+     * Metodo que obtiene el valor de tipo
+     * @return tipo
+     */
     public int getTipo() {
         return tipo;
     }
 
+    /***************************************************************************
+     * Metodo que modifica el valor de tipo
+     * @param tipo 
+     */
     public void setTipo(int tipo) {
         this.tipo = tipo;
         recibeTipo();
